@@ -1,7 +1,14 @@
 # Presley_Final_Project
 Final Project for Bio539
-This Script acts as a versitile calculator for generating Stacked Bar Plots summarizing relative abundance after resolving 
-exisiting data to a higher resolution (species/OTU level from genus/class level)
+
+This README Corresponds to 'Final_Project_Script.R' found in 'Bio539_Final_Project'/'Bio539_R_Scripts' at 
+https://github.com/A-Presley/Presley_Final_Project.git 
+
+Example data referenced can be found in 'Bio539_Final_Project'/'Bio_539_Data'at the github link above
+Example results can be found in 'Bio539_Final_Project'/'Final_Results' 
+
+Final_Project_Script.R acts as a versitile calculator for generating Stacked Bar Plots summarizing relative abundance after 
+resolving exisiting data to a higher resolution (species/OTU level from genus/class level)
 
 At the begining of the script the User will be presented with 4 varriable inputs: 
   - Var.1 <- is assigned to the master relative abundance csv, this script should be formated as follows: 
