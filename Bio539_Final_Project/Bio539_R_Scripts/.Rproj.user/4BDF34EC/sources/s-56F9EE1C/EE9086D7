@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588870011762.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "804509990",
+    "id" : "EE9086D7",
+    "lastKnownWriteTime" : 1588960954,
+    "last_content_update" : 1588960954057,
+    "path" : "~/Documents/Bio539_Final_Project/Bio539_R_Scripts/Final_Project_Script.R",
+    "project_path" : "Final_Project_Script.R",
+    "properties" : {
+        "cursorPosition" : "42,23",
+        "scrollLine" : "24",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

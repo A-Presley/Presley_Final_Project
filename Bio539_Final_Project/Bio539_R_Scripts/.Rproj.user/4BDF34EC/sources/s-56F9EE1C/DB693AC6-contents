@@ -1,0 +1,71 @@
+#Import data from https://github.com/A-Presley/Bio539_Final_Project 
+library(tidyverse)
+library(dplyr)
+#Place .csv files from github on desktop to use existing import code
+library(readr)
+
+
+# diatom_relabund_osp <- read_csv("~Desktop/diatom_relabund_osp.csv")
+# pn_asv_relabun_osp <- read_csv("~Desktop/pn_asv_relabund_osp.csv")
+# 
+# #Input varriables for var.1 - var.4 below flowing instructions above each line
+# ## Input Original Relative Abundance File; format requirements detailed in README.md
+# var.1 <- diatom_relabund_osp 
+# ## Input ASV data count file; format requirements detailed in README.md
+# var.2 <- pn_asv_relabun_osp 
+# ## Input number of ASVs in var.2 file
+# var.3 = 10 
+# ##Input name of Genus/Class being broken down to species/OTU level
+# var.4 = "Pseudo-nitzschia" 
+# 
+# #creates new file where only the desired genus (in this case Psuedo-nitzschia) and the Sample ID are left
+#   selected_genus_only <- var.1  %>% select(`Sample ID`, all_of(var.4))
+# #Takes the file specified in var.2 and mutates it to convert the sample counts into ratios of the total  
+#    asv_ratios <- var.2 %>%
+#       mutate_at(.funs = list(Ratio = ~./Totals), .vars = c(3:(var.3 + 2)))  %>% 
+#       select(`Sample ID`, (var.3 + 4):(var.3 + 13))
+# #Takes calculated ratios and uses them to generate new relative abundance values   
+#   asv_relabund <- left_join(selected_genus_only, asv_ratios, by = c("Sample ID")) %>%
+#     mutate_at(.funs = list(RelAbun = ~. * get(var.4)), .vars = c(3:(var.3 + 2) ) ) %>% 
+#     select("Sample ID", (var.3 + 3):(var.3 + 12) )
+# #Left joins new ASV Relative Abundances with exisitng relative abundances for samples
+#    asv_relabund_final <- left_join(asv_relabund, diatom_relabund_osp, by = c("Sample ID")) %>% 
+#      select(-Treatment, -all_of(var.4))
+# #Rename the ASVs as desired (Optional)
+#    asv_relabund_final <- rename(asv_relabund_final, c("Pn turgidula" = "ASV1_Ratio_RelAbun", "Fragilariopsis_New" = "ASV2_Ratio_RelAbun", "ASV3" = "ASV3_Ratio_RelAbun", "ASV4" = "ASV4_Ratio_RelAbun", 
+#                                                       "ASV5" = "ASV5_Ratio_RelAbun", "Pn delicatissima" = "ASV6_Ratio_RelAbun", "Pn hemii" = "ASV7_Ratio_RelAbun", "ASV8" = "ASV8_Ratio_RelAbun",
+#                                                       "ASV9" = "ASV9_Ratio_RelAbun", "ASV10" = "ASV10_Ratio_RelAbun"))
+
+#Set working directory to my local one
+setwd("C://Users/Sarah/Documents/URI_Post doc/EXPORTS/A_Presley/Bio539_Final_Project/Bio_539_Data/")
+
+#This will load the R data object back in under whatever it's original name was
+load("asv_relabund_final.RData")
+
+#Generate plot of data
+   library(ggplot2)
+   ggplot(asv_relabund_final, aes(x = `Sample ID`, fill = "Taxonomy")) +
+     geom_bar( stat = identity )
+
+##Issues with your code above
+###No y is specified, so ggplot has no numbers to actually plot aes(x=, y=, fill=)
+###"Taxonomy" isn't a variable in your dataframe, so ggplot doesn't know what to do with that
+###Note for best practices, don't put spaces in column names, its easier to make mistakes later with that
+###You need to put your data into long form with columns set up as below
+### column 1= sample_id, column 2= taxonomy, column 3= relabund, in this case your aes would then read...
+### aes(x=sample_id, y=relabund, fill=taxonomy)
+### Check out this tutorial for converting to long form: http://www.cookbook-r.com/Manipulating_data/Converting_data_between_wide_and_long_format/
+
+#Below is some some example code with some of the exports relabund data 
+   
+#install and load the tidyr package
+install.packages("tidyr")
+library(tidyr)
+
+#read in tody dataset I made
+relabund_long <- asv_relabund_final %>% gather(Taxonomy, Relabund, `Pn turgidula`:`Diatomea`, factor_key = TRUE)
+
+#Without a y value ggplot did not know what to plot 
+ggplot(relabund_long, aes(x = sample_id , y= relabund, fill=taxonomy)) + 
+  geom_bar( stat = "identity" )
+   

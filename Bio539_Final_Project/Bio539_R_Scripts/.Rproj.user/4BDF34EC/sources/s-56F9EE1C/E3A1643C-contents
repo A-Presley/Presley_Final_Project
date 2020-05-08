@@ -1,0 +1,5 @@
+echo -n "Input Species Name" 
+read "VAR2"
+
+for filename "diatom_relabund_osp"
+do

@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588944924869.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "98581B7",
+    "lastKnownWriteTime" : 4294967300,
+    "last_content_update" : 1588944924869,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7C4D6E2E",
+        "caption" : "diatom_relabund_osp",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=diatom_relabund_osp&cache_key=7C4D6E2E",
+        "displayedObservations" : "9",
+        "environment" : "",
+        "expression" : "diatom_relabund_osp",
+        "object" : "diatom_relabund_osp",
+        "preview" : "0",
+        "totalObservations" : "9",
+        "variables" : "15"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

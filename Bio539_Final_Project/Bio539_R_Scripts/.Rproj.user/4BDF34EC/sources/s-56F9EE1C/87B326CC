@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588960841305.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "87B326CC",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1588960841305,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "2C5A18AB",
+        "caption" : "relabund_long",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=relabund_long&cache_key=2C5A18AB",
+        "displayedObservations" : 189,
+        "environment" : "",
+        "expression" : "relabund_long",
+        "object" : "relabund_long",
+        "preview" : 0,
+        "totalObservations" : 189,
+        "variables" : 4
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

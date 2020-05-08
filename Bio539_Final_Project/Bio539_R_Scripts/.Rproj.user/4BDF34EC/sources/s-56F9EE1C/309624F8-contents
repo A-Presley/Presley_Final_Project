@@ -1,0 +1,43 @@
+#Import data from https://github.com/A-Presley/Bio539_Final_Project 
+#Place .csv files on desktop to use existing import code
+library(readr)
+diatom_relabund_osp <- read_csv("~Desktop/relabund_osp.csv")
+pn_asv_relabun_osp <- read_csv("~Desktop/relabund_osp.csv")
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("dplyr")
+library(dplyr)
+
+#This section converts the absolute counts of ASV hits into ratios that can be used for processing
+#This is done with ASVs not assigned taxinomical names yet for ease of processing and example uses 10 ASVs 
+#Code can be modified for more or less ASVs as needed by adding or removing mutates and selects 
+
+asv_ratios <- pn_asv_relabun_osp %>% mutate(ASV1 = ASV1 / Totals) %>% mutate(ASV2 = ASV2 / Totals) %>% mutate(ASV3 = ASV3 / Totals) %>%
+  mutate(ASV4 = ASV4 / Totals) %>% mutate(ASV5 = ASV5 / Totals) %>% mutate(ASV6 = ASV6 / Totals) %>% mutate (ASV7 = ASV7 / Totals ) %>%
+  mutate(ASV8 = ASV8 / Totals) %>% mutate(ASV9 = ASV9 / Totals) %>% mutate(ASV10 = ASV10 / Totals) %>% 
+  select(`Sample ID`, ASV1, ASV2, ASV3, ASV4, ASV5, ASV6, ASV7, ASV8, ASV9, ASV10 )
+
+#Select only the Sample ID column and the column you want to break down (Pseudo-Nitzschia for this example)
+
+selected_genus_only <- diatom_relabund_osp %>% select(`Sample ID`, `Pseudo-nitzschia`)
+
+asv_plus_original <- left_join(selected_genus_only, asv_ratios, by = c("Sample ID"))
+
+#To calculate percent of total abundance, ASV ratios calculated above are multiplied by the original relative abundance
+
+asv_breakdown <- asv_plus_original %>% mutate(ASV1 = ASV1 * `Pseudo-nitzschia`) %>% mutate(ASV2 = ASV2 * `Pseudo-nitzschia`) %>% 
+  mutate(ASV3 = ASV3 * `Pseudo-nitzschia`) %>% mutate(ASV4 = ASV4 * `Pseudo-nitzschia`) %>% mutate(ASV5 = ASV5 * `Pseudo-nitzschia`) %>% 
+  mutate(ASV6 = ASV6 * `Pseudo-nitzschia`) %>% mutate (ASV7 = ASV7 * `Pseudo-nitzschia` ) %>%
+  mutate(ASV8 = ASV8 * `Pseudo-nitzschia`) %>% mutate(ASV9 = ASV9 * `Pseudo-nitzschia`) %>% mutate(ASV10 = ASV10 * `Pseudo-nitzschia`) %>% 
+  select(`Sample ID`, ASV1, ASV2, ASV3, ASV4, ASV5, ASV6, ASV7, ASV8, ASV9, ASV10 )
+
+#Recombine the newly calculated ASV values with the existing relative abundances for other species
+#Remove the Genus that was broken down previously (in this case pn) and any genus that has 0 hits for all samples
+diatom_relabun_asvs_incl <- left_join(diatom_relabund_osp, asv_breakdown, by = c("Sample ID")) 
+diatom_relabun_asvs_incl <- diatom_relabun_asvs_incl %>% select(-`Pseudo-nitzschia`, -Diatomea, -Fragilariales, -Mediophyceae, -Actinocyclus)
+
+#Assign Taxonomies to ASVs if possible
+diatom_relabun_asvs_incl %>% mutate(recode(ASV1, "ASV1" = "Pn Turgidula"))
+#If sequencing revealed that some ASVs within your genus were reassigned to anotherexisting genus, use:
+
+
