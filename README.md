@@ -40,11 +40,11 @@ At the begining of the script the User will be presented with 4 varriable inputs
 After inputing all variables, run the R script one section at a time until you reach the optional renaming section, *if you do 
 not input your own names as detailed below, skip this line*. 
 
-      Assigning Taxonomy to your ASVs (Optional): 
-      This is a manual process; as long as your ASVs followed the proper format for var.2, the only thing that should need to 
-      be changed is the new names of the ASVs (these must be in double quotes ("new_name" = "ASVn_Ratio_RelAbun" with n being                     
-      the number ASV you want to reassign) these can be removed or added in accordance with the ammount of ASVs that you want 
-      to assign new names. 
+        Assigning Taxonomy to your ASVs (Optional): 
+        This is a manual process; as long as your ASVs followed the proper format for var.2, the only thing that should need 
+        to be changed is the new names of the ASVs (these must be in double quotes ("new_name" = "ASVn_Ratio_RelAbun" with n    
+        being the number ASV you want to reassign) these can be removed or added in accordance with the ammount of ASVs that    
+        you want to assign new names. 
 
 An optional step exists on line 40 to create a .RData of the calculated relative abundances for export to another existing 
 script for graphing or data analysis 
